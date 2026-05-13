@@ -21,16 +21,18 @@ def login_provider(
     provider_name: str,
     username: str | None = None,
     token: str | None = None,
+    credential_file: str | None = None,
 ) -> str:
     """Authenticate with a bug data provider (e.g. 'launchpad', 'github').
 
-    For providers supporting keyring auth (like Launchpad), username
-    and token can be omitted to use system-stored credentials.
+    For Launchpad: provide a token directly, a credential file path
+    containing the token, or omit both to authenticate anonymously.
     """
     return login(
         provider_name=provider_name,
         username=username,
         token=token,
+        credential_file=credential_file,
     )
 
 
