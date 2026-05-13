@@ -1,0 +1,11 @@
+name: ubuntu-mcp
+base: ubuntu@24.04
+sdks:
+  - name: opencode
+    channel: latest/stable
+
+  - name: uv
+    channel: latest/stable
+
+actions:
+  opencode: opencode "$@"
