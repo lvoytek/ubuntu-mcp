@@ -1,4 +1,4 @@
-# ubuntu-mcp
+# Ubuntu MCP Servers
 
 MCP servers for querying and submitting Ubuntu data via [ubq](https://github.com/canonical/ubq). Each server exposes a focused set of tools and resources for a single data domain — bugs, packages, versions, or merge requests.
 
@@ -10,7 +10,7 @@ MCP servers for querying and submitting Ubuntu data via [ubq](https://github.com
 ## Installation
 
 ```shell
-git clone <repo-url> && cd ubuntu-mcp
+git clone https://github.com/lvoytek/ubuntu-mcp.git && cd ubuntu-mcp
 uv sync
 ```
 
