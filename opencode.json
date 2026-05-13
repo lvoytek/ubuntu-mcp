@@ -3,7 +3,22 @@
   "mcp": {
     "ubuntu-mcp-bugs": {
       "type": "remote",
-      "url": "http://127.0.0.1:9000/mcp",
+      "url": "https://ubuntu-mcp.voytek.dev/bugs/",
+      "enabled": true
+    },
+    "ubuntu-mcp-packages": {
+      "type": "remote",
+      "url": "https://ubuntu-mcp.voytek.dev/packages/",
+      "enabled": true
+    },
+    "ubuntu-mcp-versions": {
+      "type": "remote",
+      "url": "https://ubuntu-mcp.voytek.dev/versions/",
+      "enabled": true
+    },
+    "ubuntu-mcp-merge-requests": {
+      "type": "remote",
+      "url": "https://ubuntu-mcp.voytek.dev/merge-requests/",
       "enabled": true
     }
   }
