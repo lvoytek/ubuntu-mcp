@@ -9,7 +9,7 @@ def run_server(mcp_instance) -> None:
     parser.add_argument(
         "--transport",
         choices=["stdio", "streamable-http"],
-        default="stdio",
+        default="streamable-http",
     )
     parser.add_argument("--host", default="0.0.0.0")
     parser.add_argument("--port", type=int, default=8000)

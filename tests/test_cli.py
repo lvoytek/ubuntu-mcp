@@ -7,11 +7,13 @@ from ubuntu_mcp.cli import run_server
 
 
 class TestCli:
-    def test_default_stdio(self):
+    def test_default_streamable_http(self):
         mock_mcp = MagicMock()
         with patch.object(sys, "argv", ["ubuntu-mcp-bugs"]):
             run_server(mock_mcp)
-        mock_mcp.run.assert_called_once_with(transport="stdio")
+        assert mock_mcp.settings.host == "0.0.0.0"
+        assert mock_mcp.settings.port == 8000
+        mock_mcp.run.assert_called_once_with(transport="streamable-http")
 
     def test_streamable_http_defaults(self):
         mock_mcp = MagicMock()
@@ -58,6 +60,8 @@ class TestCli:
             "argv",
             [
                 "ubuntu-mcp-bugs",
+                "--transport",
+                "stdio",
                 "--host",
                 "0.0.0.0",
                 "--port",

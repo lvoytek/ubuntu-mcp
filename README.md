@@ -28,9 +28,9 @@ This installs the four entry-point commands:
 All servers share the same CLI flags:
 
 ```shell
-ubuntu-mcp-bugs --transport stdio             # default — for MCP clients that spawn the process
-ubuntu-mcp-bugs --transport streamable-http   # HTTP server on 0.0.0.0:8000
+ubuntu-mcp-bugs                                           # streamable-http on 0.0.0.0:8000 (default)
 ubuntu-mcp-bugs --transport streamable-http --host 127.0.0.1 --port 9000
+ubuntu-mcp-bugs --transport stdio                         # for MCP clients that spawn the process
 ```
 
 Replace `ubuntu-mcp-bugs` with any of the four commands above.
