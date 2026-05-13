@@ -1,5 +1,6 @@
 """Shared QueryService lifecycle management for MCP servers."""
 
+import sys
 from pathlib import Path
 
 from launchpadlib.launchpad import Launchpad  # type: ignore[import-untyped]
@@ -8,17 +9,25 @@ from ubq.models import ProviderCredentials
 from ubq.providers.session import ProviderSession
 
 _service: QueryService | None = None
+_verbose: bool = False
 
 DEFAULT_CREDENTIAL_FILE = Path(
     "~/.config/ubq/launchpad-credentials"
 ).expanduser()
 
 
+def set_verbose(enabled: bool) -> None:
+    """Enable or disable verbose logging of ubq API calls."""
+    global _verbose  # noqa: PLW0603
+    _verbose = enabled
+
+
 def get_service() -> QueryService:
     """Return the singleton QueryService, creating it on first call."""
     global _service  # noqa: PLW0603
     if _service is None:
-        _service = QueryService()
+        svc = QueryService()
+        _service = _VerboseQueryService(svc) if _verbose else svc
     return _service
 
 
@@ -128,3 +137,54 @@ def list_providers() -> list[str]:
 def list_active_sessions() -> list[str]:
     """Return names of providers with active sessions."""
     return list(get_service()._registry.active_sessions())
+
+
+class _VerboseQueryService:
+    """Wrapper that logs all ubq API calls before delegating to the real service."""
+
+    def __init__(self, service: QueryService) -> None:
+        self._service = service
+
+    def _log(self, method_name: str, **kwargs) -> None:
+        args_str = ", ".join(f"{k}={v!r}" for k, v in kwargs.items())
+        print(f"ubq API call: {method_name}({args_str})", file=sys.stderr)
+
+    def login(self, **kwargs):
+        self._log("login", **kwargs)
+        return self._service.login(**kwargs)
+
+    def available_providers(self):
+        self._log("available_providers")
+        return self._service.available_providers()
+
+    def get_bug(self, **kwargs):
+        self._log("get_bug", **kwargs)
+        return self._service.get_bug(**kwargs)
+
+    def search_bugs(self, **kwargs):
+        self._log("search_bugs", **kwargs)
+        return self._service.search_bugs(**kwargs)
+
+    def submit_bug(self, **kwargs):
+        self._log("submit_bug", **kwargs)
+        return self._service.submit_bug(**kwargs)
+
+    def get_package(self, **kwargs):
+        self._log("get_package", **kwargs)
+        return self._service.get_package(**kwargs)
+
+    def get_version(self, **kwargs):
+        self._log("get_version", **kwargs)
+        return self._service.get_version(**kwargs)
+
+    def get_merge_request(self, **kwargs):
+        self._log("get_merge_request", **kwargs)
+        return self._service.get_merge_request(**kwargs)
+
+    def get_merge_requests_from_user(self, **kwargs):
+        self._log("get_merge_requests_from_user", **kwargs)
+        return self._service.get_merge_requests_from_user(**kwargs)
+
+    @property
+    def _registry(self):
+        return self._service._registry

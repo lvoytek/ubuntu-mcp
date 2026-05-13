@@ -72,3 +72,23 @@ class TestCli:
         assert mock_mcp.settings.host == original_host
         assert mock_mcp.settings.port == original_port
         mock_mcp.run.assert_called_once_with(transport="stdio")
+
+    def test_verbose_flag_short(self):
+        from ubuntu_mcp import service
+
+        service._verbose = False
+        mock_mcp = MagicMock()
+        with patch.object(sys, "argv", ["ubuntu-mcp-bugs", "-v"]):
+            run_server(mock_mcp)
+        assert service._verbose is True
+        service._verbose = False
+
+    def test_verbose_flag_long(self):
+        from ubuntu_mcp import service
+
+        service._verbose = False
+        mock_mcp = MagicMock()
+        with patch.object(sys, "argv", ["ubuntu-mcp-bugs", "--verbose"]):
+            run_server(mock_mcp)
+        assert service._verbose is True
+        service._verbose = False
