@@ -14,7 +14,7 @@ git clone https://github.com/lvoytek/ubuntu-mcp.git && cd ubuntu-mcp
 uv sync
 ```
 
-This installs the four entry-point commands:
+This installs the five entry-point commands:
 
 | Command | Server |
 |---|---|
@@ -22,6 +22,7 @@ This installs the four entry-point commands:
 | `ubuntu-mcp-packages` | Package data |
 | `ubuntu-mcp-versions` | Package version data |
 | `ubuntu-mcp-merge-requests` | Merge request data |
+| `ubuntu-mcp-all` | All of the above at once |
 
 ## Running a server
 
@@ -33,7 +34,16 @@ ubuntu-mcp-bugs --transport streamable-http --host 127.0.0.1 --port 9000
 ubuntu-mcp-bugs --transport stdio                         # for MCP clients that spawn the process
 ```
 
-Replace `ubuntu-mcp-bugs` with any of the four commands above.
+Replace `ubuntu-mcp-bugs` with any of the commands above.
+
+### Running all servers
+
+Use `ubuntu-mcp-all` to start every server at once on sequential ports:
+
+```shell
+ubuntu-mcp-all                              # bugs=8000, packages=8001, versions=8002, merge-requests=8003
+ubuntu-mcp-all --host 127.0.0.1 --port 9000 # bugs=9000, packages=9001, versions=9002, merge-requests=9003
+```
 
 ### Connecting an MCP client
 
@@ -44,7 +54,19 @@ For an HTTP server, add the URL to your client config:
   "mcp": {
     "ubuntu-mcp-bugs": {
       "type": "remote",
-      "url": "http://127.0.0.1:9000/mcp"
+      "url": "http://127.0.0.1:8000/mcp"
+    },
+    "ubuntu-mcp-packages": {
+      "type": "remote",
+      "url": "http://127.0.0.1:8001/mcp"
+    },
+    "ubuntu-mcp-versions": {
+      "type": "remote",
+      "url": "http://127.0.0.1:8002/mcp"
+    },
+    "ubuntu-mcp-merge-requests": {
+      "type": "remote",
+      "url": "http://127.0.0.1:8003/mcp"
     }
   }
 }

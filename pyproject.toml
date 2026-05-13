@@ -13,6 +13,7 @@ ubuntu-mcp-bugs = "ubuntu_mcp.bugs.server:main"
 ubuntu-mcp-packages = "ubuntu_mcp.packages.server:main"
 ubuntu-mcp-versions = "ubuntu_mcp.versions.server:main"
 ubuntu-mcp-merge-requests = "ubuntu_mcp.merge_requests.server:main"
+ubuntu-mcp-all = "ubuntu_mcp.all.server:main"
 
 [dependency-groups]
 format = [
