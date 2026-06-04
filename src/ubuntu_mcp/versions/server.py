@@ -48,6 +48,7 @@ def get_version(
     series: str,
     provider_name: str,
     pocket: str | None = None,
+    archive: str = "ubuntu",
 ) -> dict | None:
     """Fetch the version of a package in a given Ubuntu series.
 
@@ -61,6 +62,7 @@ def get_version(
             package_name=package_name,
             series=series,
             pocket=pocket,
+            archive=archive,
             provider_name=provider_name,
         )
     except ValueError as exc:

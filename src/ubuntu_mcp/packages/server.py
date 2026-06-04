@@ -44,12 +44,14 @@ def list_package_providers() -> list[str]:
 def get_package(
     package_name: str,
     provider_name: str,
+    archive: str = "ubuntu",
 ) -> dict | None:
     """Fetch a package by name from the given provider."""
     svc = get_service()
     try:
         record = svc.get_package(
             package_name=package_name,
+            archive=archive,
             provider_name=provider_name,
         )
     except ValueError as exc:

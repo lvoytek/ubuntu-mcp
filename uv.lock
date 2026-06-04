@@ -885,16 +885,16 @@ wheels = [
 
 [[package]]
 name = "ubq"
-version = "0.4.1"
+version = "0.5.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "keyring" },
     { name = "launchpadlib" },
     { name = "lazr-restfulclient" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/60/71/068d923dea8466f0cb2774447a97823bd6d4ce0e303f0385bf955a201976/ubq-0.4.1.tar.gz", hash = "sha256:5cdd1ed1f120eb15cce09e28ec5e9f1ff13c17074a2ceca8d3e7214dcefa0600", size = 51105, upload-time = "2026-05-13T12:29:00.279Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/28/18/a0d2520cae22b8d42b0336f6e95363f4876329c0e74142599f4d23d89838/ubq-0.5.1.tar.gz", hash = "sha256:effb58f3f98d623a6f3f11ccd2d4406c06b69fe14ce97be8f7cfe7ac719073b5", size = 53128, upload-time = "2026-05-22T21:44:38.098Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/75/2d/8796eb5e99407040262828a24df5071fb2ac704e18f5be36b23a5688d0bc/ubq-0.4.1-py3-none-any.whl", hash = "sha256:4ab3a5db508b8881b95a1bb690d86fa38eabbb600c6716f6934b8a742c6d17a1", size = 39940, upload-time = "2026-05-13T12:28:58.87Z" },
+    { url = "https://files.pythonhosted.org/packages/7c/71/337aeb11df3e5e55d63e9ba30f2d012fe30dd5a2c2a2e3b315310b13080e/ubq-0.5.1-py3-none-any.whl", hash = "sha256:fd64a066bebf8fc19caae16d38378394575e2fac98a811a9560bb11cbcf3adc1", size = 42220, upload-time = "2026-05-22T21:44:36.649Z" },
 ]
 
 [[package]]
@@ -918,7 +918,7 @@ test = [
 [package.metadata]
 requires-dist = [
     { name = "mcp", extras = ["cli"], specifier = ">=1.27.0" },
-    { name = "ubq", specifier = ">=0.4.1" },
+    { name = "ubq", specifier = "==0.5.1" },
 ]
 
 [package.metadata.requires-dev]
